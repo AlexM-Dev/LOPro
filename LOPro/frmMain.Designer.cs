@@ -23,142 +23,102 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
-            this.grpControls = new System.Windows.Forms.GroupBox();
-            this.btnChaseRows = new System.Windows.Forms.Button();
-            this.btnSolutions = new System.Windows.Forms.Button();
-            this.btnToggleX = new System.Windows.Forms.Button();
-            this.grpGrid = new System.Windows.Forms.GroupBox();
-            this.lblSize = new System.Windows.Forms.Label();
-            this.txtWidth = new System.Windows.Forms.TextBox();
-            this.lblX = new System.Windows.Forms.Label();
-            this.txtHeight = new System.Windows.Forms.TextBox();
+            this.grpGeneration = new System.Windows.Forms.GroupBox();
+            this.nudHeight = new System.Windows.Forms.NumericUpDown();
+            this.nudWidth = new System.Windows.Forms.NumericUpDown();
             this.btnGenerate = new System.Windows.Forms.Button();
+            this.grpGrid = new System.Windows.Forms.GroupBox();
             this.grpOutput = new System.Windows.Forms.GroupBox();
             this.txtOutput = new System.Windows.Forms.TextBox();
-            this.grpControls.SuspendLayout();
+            this.mnuMain = new System.Windows.Forms.MainMenu(this.components);
+            this.mnuInteraction = new System.Windows.Forms.MenuItem();
+            this.mnuClickMode = new System.Windows.Forms.MenuItem();
+            this.sepRnd = new System.Windows.Forms.MenuItem();
+            this.mnuRandomGrid = new System.Windows.Forms.MenuItem();
+            this.sepFill = new System.Windows.Forms.MenuItem();
+            this.mnuFillGrid = new System.Windows.Forms.MenuItem();
+            this.mnuClearGrid = new System.Windows.Forms.MenuItem();
+            this.mnuChase = new System.Windows.Forms.MenuItem();
+            this.mnuChaseOne = new System.Windows.Forms.MenuItem();
+            this.mnuChaseAll = new System.Windows.Forms.MenuItem();
+            this.mnuSolve = new System.Windows.Forms.MenuItem();
+            this.mnuSolveText = new System.Windows.Forms.MenuItem();
+            this.mnuSolveSteps = new System.Windows.Forms.MenuItem();
+            this.grpSteps = new System.Windows.Forms.GroupBox();
+            this.btnCloseSteps = new System.Windows.Forms.Button();
+            this.grpGeneration.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudHeight)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).BeginInit();
             this.grpOutput.SuspendLayout();
+            this.grpSteps.SuspendLayout();
             this.SuspendLayout();
             // 
-            // grpControls
+            // grpGeneration
             // 
-            this.grpControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.grpGeneration.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpControls.Controls.Add(this.btnGenerate);
-            this.grpControls.Controls.Add(this.txtHeight);
-            this.grpControls.Controls.Add(this.lblX);
-            this.grpControls.Controls.Add(this.txtWidth);
-            this.grpControls.Controls.Add(this.lblSize);
-            this.grpControls.Controls.Add(this.btnChaseRows);
-            this.grpControls.Controls.Add(this.btnSolutions);
-            this.grpControls.Controls.Add(this.btnToggleX);
-            this.grpControls.Location = new System.Drawing.Point(13, 11);
-            this.grpControls.Name = "grpControls";
-            this.grpControls.Size = new System.Drawing.Size(501, 95);
-            this.grpControls.TabIndex = 1;
-            this.grpControls.TabStop = false;
-            this.grpControls.Text = "Controls";
+            this.grpGeneration.Controls.Add(this.nudHeight);
+            this.grpGeneration.Controls.Add(this.nudWidth);
+            this.grpGeneration.Controls.Add(this.btnGenerate);
+            this.grpGeneration.Location = new System.Drawing.Point(13, 11);
+            this.grpGeneration.Name = "grpGeneration";
+            this.grpGeneration.Size = new System.Drawing.Size(403, 78);
+            this.grpGeneration.TabIndex = 1;
+            this.grpGeneration.TabStop = false;
+            this.grpGeneration.Text = "Grid Generation";
             // 
-            // btnChaseRows
+            // nudHeight
             // 
-            this.btnChaseRows.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnChaseRows.Enabled = false;
-            this.btnChaseRows.Location = new System.Drawing.Point(193, 52);
-            this.btnChaseRows.Name = "btnChaseRows";
-            this.btnChaseRows.Size = new System.Drawing.Size(118, 23);
-            this.btnChaseRows.TabIndex = 2;
-            this.btnChaseRows.Text = "Chase the rows";
-            this.btnChaseRows.UseVisualStyleBackColor = true;
-            this.btnChaseRows.Click += new System.EventHandler(this.btnChaseRows_Click);
+            this.nudHeight.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.nudHeight.Location = new System.Drawing.Point(204, 21);
+            this.nudHeight.Name = "nudHeight";
+            this.nudHeight.Size = new System.Drawing.Size(73, 22);
+            this.nudHeight.TabIndex = 9;
+            this.nudHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudHeight.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
             // 
-            // btnSolutions
+            // nudWidth
             // 
-            this.btnSolutions.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnSolutions.Enabled = false;
-            this.btnSolutions.Location = new System.Drawing.Point(317, 52);
-            this.btnSolutions.Name = "btnSolutions";
-            this.btnSolutions.Size = new System.Drawing.Size(118, 23);
-            this.btnSolutions.TabIndex = 1;
-            this.btnSolutions.Text = "Find a solution";
-            this.btnSolutions.UseVisualStyleBackColor = true;
-            this.btnSolutions.Click += new System.EventHandler(this.btnSolutions_Click);
+            this.nudWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.nudWidth.Location = new System.Drawing.Point(125, 21);
+            this.nudWidth.Name = "nudWidth";
+            this.nudWidth.Size = new System.Drawing.Size(73, 22);
+            this.nudWidth.TabIndex = 8;
+            this.nudWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.nudWidth.Value = new decimal(new int[] {
+            7,
+            0,
+            0,
+            0});
             // 
-            // btnToggleX
+            // btnGenerate
             // 
-            this.btnToggleX.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnToggleX.Enabled = false;
-            this.btnToggleX.Location = new System.Drawing.Point(69, 52);
-            this.btnToggleX.Name = "btnToggleX";
-            this.btnToggleX.Size = new System.Drawing.Size(118, 23);
-            this.btnToggleX.TabIndex = 0;
-            this.btnToggleX.Text = "Toggle one";
-            this.btnToggleX.UseVisualStyleBackColor = true;
-            this.btnToggleX.Click += new System.EventHandler(this.btnToggleX_Click);
+            this.btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnGenerate.Location = new System.Drawing.Point(125, 44);
+            this.btnGenerate.Name = "btnGenerate";
+            this.btnGenerate.Size = new System.Drawing.Size(152, 23);
+            this.btnGenerate.TabIndex = 7;
+            this.btnGenerate.Text = "Generate";
+            this.btnGenerate.UseVisualStyleBackColor = true;
+            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // grpGrid
             // 
             this.grpGrid.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.grpGrid.Location = new System.Drawing.Point(13, 112);
+            this.grpGrid.Location = new System.Drawing.Point(13, 95);
             this.grpGrid.Name = "grpGrid";
-            this.grpGrid.Size = new System.Drawing.Size(501, 219);
+            this.grpGrid.Size = new System.Drawing.Size(403, 236);
             this.grpGrid.TabIndex = 2;
             this.grpGrid.TabStop = false;
             this.grpGrid.Text = "Interactive Grid";
-            // 
-            // lblSize
-            // 
-            this.lblSize.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblSize.AutoSize = true;
-            this.lblSize.Location = new System.Drawing.Point(66, 25);
-            this.lblSize.Name = "lblSize";
-            this.lblSize.Size = new System.Drawing.Size(30, 13);
-            this.lblSize.TabIndex = 3;
-            this.lblSize.Text = "Size:";
-            // 
-            // txtWidth
-            // 
-            this.txtWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtWidth.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtWidth.Location = new System.Drawing.Point(102, 22);
-            this.txtWidth.Name = "txtWidth";
-            this.txtWidth.Size = new System.Drawing.Size(63, 22);
-            this.txtWidth.TabIndex = 4;
-            this.txtWidth.Text = "7";
-            this.txtWidth.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // lblX
-            // 
-            this.lblX.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lblX.AutoSize = true;
-            this.lblX.Location = new System.Drawing.Point(173, 25);
-            this.lblX.Name = "lblX";
-            this.lblX.Size = new System.Drawing.Size(12, 13);
-            this.lblX.TabIndex = 5;
-            this.lblX.Text = "x";
-            // 
-            // txtHeight
-            // 
-            this.txtHeight.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtHeight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtHeight.Location = new System.Drawing.Point(193, 22);
-            this.txtHeight.Name = "txtHeight";
-            this.txtHeight.Size = new System.Drawing.Size(63, 22);
-            this.txtHeight.TabIndex = 6;
-            this.txtHeight.Text = "5";
-            this.txtHeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // btnGenerate
-            // 
-            this.btnGenerate.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnGenerate.Location = new System.Drawing.Point(317, 20);
-            this.btnGenerate.Name = "btnGenerate";
-            this.btnGenerate.Size = new System.Drawing.Size(118, 23);
-            this.btnGenerate.TabIndex = 7;
-            this.btnGenerate.Text = "Generate";
-            this.btnGenerate.UseVisualStyleBackColor = true;
-            this.btnGenerate.Click += new System.EventHandler(this.btnGenerate_Click);
             // 
             // grpOutput
             // 
@@ -167,7 +127,7 @@
             this.grpOutput.Controls.Add(this.txtOutput);
             this.grpOutput.Location = new System.Drawing.Point(13, 337);
             this.grpOutput.Name = "grpOutput";
-            this.grpOutput.Size = new System.Drawing.Size(501, 102);
+            this.grpOutput.Size = new System.Drawing.Size(403, 102);
             this.grpOutput.TabIndex = 3;
             this.grpOutput.TabStop = false;
             this.grpOutput.Text = "Output";
@@ -183,44 +143,182 @@
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.ReadOnly = true;
             this.txtOutput.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtOutput.Size = new System.Drawing.Size(482, 74);
+            this.txtOutput.Size = new System.Drawing.Size(384, 74);
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "This is the output box. Refer to this for solutions and information.";
+            // 
+            // mnuMain
+            // 
+            this.mnuMain.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuInteraction,
+            this.mnuChase,
+            this.mnuSolve});
+            // 
+            // mnuInteraction
+            // 
+            this.mnuInteraction.Enabled = false;
+            this.mnuInteraction.Index = 0;
+            this.mnuInteraction.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuClickMode,
+            this.sepRnd,
+            this.mnuRandomGrid,
+            this.sepFill,
+            this.mnuFillGrid,
+            this.mnuClearGrid});
+            this.mnuInteraction.Text = "Interaction";
+            // 
+            // mnuClickMode
+            // 
+            this.mnuClickMode.Index = 0;
+            this.mnuClickMode.Shortcut = System.Windows.Forms.Shortcut.CtrlC;
+            this.mnuClickMode.Text = "Click mode: one";
+            this.mnuClickMode.Click += new System.EventHandler(this.mnuClickMode_Click);
+            // 
+            // sepRnd
+            // 
+            this.sepRnd.Index = 1;
+            this.sepRnd.Text = "-";
+            // 
+            // mnuRandomGrid
+            // 
+            this.mnuRandomGrid.Index = 2;
+            this.mnuRandomGrid.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
+            this.mnuRandomGrid.Text = "Random grid";
+            // 
+            // sepFill
+            // 
+            this.sepFill.Index = 3;
+            this.sepFill.Text = "-";
+            // 
+            // mnuFillGrid
+            // 
+            this.mnuFillGrid.Index = 4;
+            this.mnuFillGrid.Shortcut = System.Windows.Forms.Shortcut.CtrlF;
+            this.mnuFillGrid.Text = "Fill grid";
+            // 
+            // mnuClearGrid
+            // 
+            this.mnuClearGrid.Index = 5;
+            this.mnuClearGrid.Shortcut = System.Windows.Forms.Shortcut.CtrlX;
+            this.mnuClearGrid.Text = "Clear grid";
+            // 
+            // mnuChase
+            // 
+            this.mnuChase.Enabled = false;
+            this.mnuChase.Index = 1;
+            this.mnuChase.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuChaseOne,
+            this.mnuChaseAll});
+            this.mnuChase.Text = "Chasing";
+            // 
+            // mnuChaseOne
+            // 
+            this.mnuChaseOne.Index = 0;
+            this.mnuChaseOne.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftR;
+            this.mnuChaseOne.Text = "Chase one row";
+            // 
+            // mnuChaseAll
+            // 
+            this.mnuChaseAll.Index = 1;
+            this.mnuChaseAll.Shortcut = System.Windows.Forms.Shortcut.CtrlR;
+            this.mnuChaseAll.Text = "Chase all rows";
+            this.mnuChaseAll.Click += new System.EventHandler(this.mnuChaseAll_Click);
+            // 
+            // mnuSolve
+            // 
+            this.mnuSolve.Enabled = false;
+            this.mnuSolve.Index = 2;
+            this.mnuSolve.MenuItems.AddRange(new System.Windows.Forms.MenuItem[] {
+            this.mnuSolveText,
+            this.mnuSolveSteps});
+            this.mnuSolve.Text = "Solving";
+            // 
+            // mnuSolveText
+            // 
+            this.mnuSolveText.Index = 0;
+            this.mnuSolveText.Shortcut = System.Windows.Forms.Shortcut.CtrlS;
+            this.mnuSolveText.Text = "Text solve";
+            this.mnuSolveText.Click += new System.EventHandler(this.mnuSolveText_Click);
+            // 
+            // mnuSolveSteps
+            // 
+            this.mnuSolveSteps.Index = 1;
+            this.mnuSolveSteps.Shortcut = System.Windows.Forms.Shortcut.CtrlShiftS;
+            this.mnuSolveSteps.Text = "Show steps";
+            this.mnuSolveSteps.Click += new System.EventHandler(this.mnuSolveSteps_Click);
+            // 
+            // grpSteps
+            // 
+            this.grpSteps.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpSteps.Controls.Add(this.btnCloseSteps);
+            this.grpSteps.Location = new System.Drawing.Point(13, 95);
+            this.grpSteps.Name = "grpSteps";
+            this.grpSteps.Size = new System.Drawing.Size(403, 236);
+            this.grpSteps.TabIndex = 3;
+            this.grpSteps.TabStop = false;
+            this.grpSteps.Text = "Solution - What to click (steps)";
+            this.grpSteps.Visible = false;
+            // 
+            // btnCloseSteps
+            // 
+            this.btnCloseSteps.Location = new System.Drawing.Point(299, 17);
+            this.btnCloseSteps.Name = "btnCloseSteps";
+            this.btnCloseSteps.Size = new System.Drawing.Size(94, 23);
+            this.btnCloseSteps.TabIndex = 0;
+            this.btnCloseSteps.Text = "Close Steps (X)";
+            this.btnCloseSteps.UseVisualStyleBackColor = true;
+            this.btnCloseSteps.Click += new System.EventHandler(this.btnCloseSteps_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(526, 451);
+            this.ClientSize = new System.Drawing.Size(428, 451);
             this.Controls.Add(this.grpOutput);
+            this.Controls.Add(this.grpGeneration);
+            this.Controls.Add(this.grpSteps);
             this.Controls.Add(this.grpGrid);
-            this.Controls.Add(this.grpControls);
             this.Font = new System.Drawing.Font("Segoe UI", 8F);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Menu = this.mnuMain;
             this.Name = "frmMain";
             this.Text = "LOPro - Lights Out Solution Finder";
-            this.Load += new System.EventHandler(this.frmMain_Load);
-            this.grpControls.ResumeLayout(false);
-            this.grpControls.PerformLayout();
+            this.grpGeneration.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudHeight)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudWidth)).EndInit();
             this.grpOutput.ResumeLayout(false);
             this.grpOutput.PerformLayout();
+            this.grpSteps.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
-        private System.Windows.Forms.GroupBox grpControls;
-        private System.Windows.Forms.Button btnToggleX;
-        private System.Windows.Forms.Button btnSolutions;
-        private System.Windows.Forms.Button btnChaseRows;
+        private System.Windows.Forms.GroupBox grpGeneration;
         private System.Windows.Forms.GroupBox grpGrid;
-        private System.Windows.Forms.Label lblSize;
-        private System.Windows.Forms.TextBox txtWidth;
-        private System.Windows.Forms.Label lblX;
-        private System.Windows.Forms.TextBox txtHeight;
         private System.Windows.Forms.Button btnGenerate;
         private System.Windows.Forms.GroupBox grpOutput;
         private System.Windows.Forms.TextBox txtOutput;
+        private System.Windows.Forms.MainMenu mnuMain;
+        private System.Windows.Forms.MenuItem mnuInteraction;
+        private System.Windows.Forms.MenuItem mnuChase;
+        private System.Windows.Forms.MenuItem mnuSolve;
+        private System.Windows.Forms.NumericUpDown nudWidth;
+        private System.Windows.Forms.NumericUpDown nudHeight;
+        private System.Windows.Forms.MenuItem mnuSolveText;
+        private System.Windows.Forms.MenuItem mnuSolveSteps;
+        private System.Windows.Forms.MenuItem mnuClickMode;
+        private System.Windows.Forms.MenuItem sepRnd;
+        private System.Windows.Forms.MenuItem mnuRandomGrid;
+        private System.Windows.Forms.MenuItem sepFill;
+        private System.Windows.Forms.MenuItem mnuFillGrid;
+        private System.Windows.Forms.MenuItem mnuClearGrid;
+        private System.Windows.Forms.MenuItem mnuChaseOne;
+        private System.Windows.Forms.MenuItem mnuChaseAll;
+        private System.Windows.Forms.GroupBox grpSteps;
+        private System.Windows.Forms.Button btnCloseSteps;
     }
 }
 

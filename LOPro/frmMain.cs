@@ -11,67 +11,99 @@ using System.Windows.Forms;
 namespace LOPro {
     public partial class frmMain : Form {
         InteractiveGrid grid;
+        InteractiveGrid stepGrid;
+
+        StepTracker tracker;
 
         public frmMain() {
             InitializeComponent();
         }
 
-        private void frmMain_Load(object sender, EventArgs e) {
-        }
-
-        private void btnToggleX_Click(object sender, EventArgs e) {
-            grid.ToggleOne = !grid.ToggleOne;
-
-            btnToggleX.Text = grid.ToggleOne ? "Toggle one" : "Toggle many";
-        }
-
-        private void btnChaseRows_Click(object sender, EventArgs e) {
-            grid.InternalGrid.ChaseAll();
-
-            grid.InternalToInteractiveSync();
-        }
-
-        private void btnSolutions_Click(object sender, EventArgs e) {
-            var lg = grid.InternalGrid;
-
-            if (!lg.RequiresSecondChase()) {
-                txtOutput.AppendText("\r\nAfter first chasing, no" +
-                    " further chasing is required.");
-                grid.InternalToInteractiveSync();
-                return;
-            }
-            grid.InternalToInteractiveSync();
-
-            var solution = lg.GetSolution();
-            if (solution != null) {
-                var friendly = solution.Select(n => { n = n + 1; return n; });
-
-                txtOutput.AppendText("\r\nPress the lights at the top in the "
-                    + "following order, then chase: " +
-                    String.Join(", ", friendly));
-            } else {
-                txtOutput.AppendText("\r\nThis challenge is unsolvable.");
-            }
-        }
-
         private void btnGenerate_Click(object sender, EventArgs e) {
-            if (!Int32.TryParse(txtWidth.Text, out int w) ||
-                !Int32.TryParse(txtHeight.Text, out int h))
-                return;
+            int w = (int)nudWidth.Value, h = (int)nudHeight.Value;
 
             grid = new InteractiveGrid(grpGrid, new Size(w, h));
+            stepGrid = new InteractiveGrid(grpSteps, new Size(w, h), false);
+            stepGrid.OnColor = Color.Red;
 
             grid.GenerateGrid();
+            stepGrid.GenerateGrid();
 
-            txtWidth.Enabled = false;
-            txtHeight.Enabled = false;
+            tracker = new StepTracker(grid.InternalGrid);
+
+            nudWidth.Enabled = false;
+            nudHeight.Enabled = false;
             btnGenerate.Enabled = false;
 
-            btnToggleX.Enabled = true;
-            btnChaseRows.Enabled = true;
-            btnSolutions.Enabled = true;
+            mnuInteraction.Enabled = true;
+            mnuChase.Enabled = true;
+            mnuSolve.Enabled = true;
+        }
 
-            btnSolutions.Focus();
+        private void mnuClickMode_Click(object sender, EventArgs e) {
+            grid.ToggleOne = !grid.ToggleOne;
+
+            mnuClickMode.Text = grid.ToggleOne ? "Click mode: one" :
+                "Click mode: many/game";
+        }
+
+        private void mnuChaseAll_Click(object sender, EventArgs e) {
+            BasicSolver.ChaseAll(grid.InternalGrid);
+
+            grid.InternalToInteractiveSync();
+        }
+
+        private void mnuSolveSteps_Click(object sender, EventArgs e) {
+            var lg = grid.InternalGrid;
+
+            if (tracker.RequiresSecondChase()) {
+                var solution = tracker.GetSolution();
+            } else { }
+            var c = tracker.ConvertToGrid();
+
+            for (int x = 0; x < stepGrid.InternalGrid.Width; x++) {
+                for (int y = 0; y < stepGrid.InternalGrid.Height; y++) {
+                    stepGrid.InternalGrid.InternalGrid[x, y] = c[x, y];
+                }
+            }
+            grid.InternalToInteractiveSync();
+            stepGrid.InternalToInteractiveSync();
+
+            grpSteps.Show();
+            grpSteps.BringToFront();
+        }
+
+        private void mnuSolveText_Click(object sender, EventArgs e) {
+            var lg = grid.InternalGrid;
+
+            if (BasicSolver.RequiresSecondChase(lg)) {
+
+                var solution = BasicSolver.GetSolution(lg);
+
+                if (solution != null) {
+                    var friendly = solution.Select(n => { n = n + 1; return n; });
+
+                    txtOutput.AppendText("\r\nPress the lights at the top in the "
+                        + "following order, then chase: " +
+                        String.Join(", ", friendly));
+                } else {
+                    txtOutput.AppendText("\r\nThis challenge is unsolvable.");
+                }
+
+            } else {
+
+                txtOutput.AppendText("\r\nAfter first chasing, no" +
+                    " further chasing is required.");
+
+            }
+            grid.InternalToInteractiveSync();
+        }
+
+        private void btnCloseSteps_Click(object sender, EventArgs e) {
+            tracker.Reset();
+
+            grpSteps.SendToBack();
+            grpSteps.Hide();
         }
     }
 }
