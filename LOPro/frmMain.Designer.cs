@@ -184,6 +184,7 @@
             this.mnuRandomGrid.Index = 2;
             this.mnuRandomGrid.Shortcut = System.Windows.Forms.Shortcut.CtrlO;
             this.mnuRandomGrid.Text = "Random grid";
+            this.mnuRandomGrid.Click += new System.EventHandler(this.mnuRandomGrid_Click);
             // 
             // sepFill
             // 

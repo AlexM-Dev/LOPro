@@ -15,6 +15,8 @@ namespace LOPro {
 
         StepTracker tracker;
 
+        Random rnd = new Random();
+
         public frmMain() {
             InitializeComponent();
         }
@@ -28,8 +30,6 @@ namespace LOPro {
 
             grid.GenerateGrid();
             stepGrid.GenerateGrid();
-
-            tracker = new StepTracker(grid.InternalGrid);
 
             nudWidth.Enabled = false;
             nudHeight.Enabled = false;
@@ -56,9 +56,21 @@ namespace LOPro {
         private void mnuSolveSteps_Click(object sender, EventArgs e) {
             var lg = grid.InternalGrid;
 
+            var copyArr = lg.InternalGrid.Clone() as bool[,];
+            var ng = new Grid(copyArr);
+
+            tracker = new StepTracker(ng);
+
             if (tracker.RequiresSecondChase()) {
-                var solution = tracker.GetSolution();
-            } else { }
+                var sol = tracker.GetSolution();
+
+                if (sol == null) {
+                    grid.InternalToInteractiveSync();
+                    txtOutput.AppendText("\r\nThis challenge is unsolvable.");
+                    return;
+                }
+            }
+
             var c = tracker.ConvertToGrid();
 
             for (int x = 0; x < stepGrid.InternalGrid.Width; x++) {
@@ -66,7 +78,7 @@ namespace LOPro {
                     stepGrid.InternalGrid.InternalGrid[x, y] = c[x, y];
                 }
             }
-            grid.InternalToInteractiveSync();
+
             stepGrid.InternalToInteractiveSync();
 
             grpSteps.Show();
@@ -76,27 +88,26 @@ namespace LOPro {
         private void mnuSolveText_Click(object sender, EventArgs e) {
             var lg = grid.InternalGrid;
 
-            if (BasicSolver.RequiresSecondChase(lg)) {
+            var copyArr = lg.InternalGrid.Clone() as bool[,];
+            var ng = new Grid(copyArr);
 
-                var solution = BasicSolver.GetSolution(lg);
+            if (BasicSolver.RequiresSecondChase(ng)) {
+                var solution = BasicSolver.GetSolution(ng);
 
                 if (solution != null) {
                     var friendly = solution.Select(n => { n = n + 1; return n; });
 
-                    txtOutput.AppendText("\r\nPress the lights at the top in the "
+                    txtOutput.AppendText("\r\nChase all the lights, then " +
+                        "press the lights at the top in the "
                         + "following order, then chase: " +
                         String.Join(", ", friendly));
                 } else {
                     txtOutput.AppendText("\r\nThis challenge is unsolvable.");
                 }
-
             } else {
-
                 txtOutput.AppendText("\r\nAfter first chasing, no" +
                     " further chasing is required.");
-
             }
-            grid.InternalToInteractiveSync();
         }
 
         private void btnCloseSteps_Click(object sender, EventArgs e) {
@@ -104,6 +115,16 @@ namespace LOPro {
 
             grpSteps.SendToBack();
             grpSteps.Hide();
+        }
+
+        private void mnuRandomGrid_Click(object sender, EventArgs e) {
+            for (int x = 0; x < grid.InternalGrid.Width; x++) {
+                for (int y = 0; y < grid.InternalGrid.Height; y++) {
+                    grid.InternalGrid.InternalGrid[x, y] = rnd.Next(2) == 1;
+                }
+            }
+
+            grid.InternalToInteractiveSync();
         }
     }
 }
